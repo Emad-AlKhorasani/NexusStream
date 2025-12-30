@@ -1,0 +1,6 @@
+FROM python:3.9-slim
+RUN apt-get update && apt-get install -y default-jre procps && apt-get clean
+RUN pip install pyspark
+ENV SPARK_HOME=/usr/local/lib/python3.9/site-packages/pyspark
+ENV PATH=$PATH:$SPARK_HOME/bin
+CMD ["spark-class", "org.apache.spark.deploy.master.Master"]
